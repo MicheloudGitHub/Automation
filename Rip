@@ -1,0 +1,38 @@
+from appium import webdriver
+import unittest
+
+class Settings(unittest.TestCase):
+    def setUp(self):
+        desired_capabilities = {}
+        desired_capabilities['platformName'] = 'Android'
+        desired_capabilities['platformVersion'] = '10'
+        desired_capabilities['deviceName'] = 'A71'
+        desired_capabilities['automationName'] = 'uiautomator2'
+        desired_capabilities['appPackage'] = 'com.ripio.android'
+        desired_capabilities['appActivity'] = '.MainActivity t6391'
+        self.driver = webdriver.Remote('http://127.0.0.1:4723/wd/hub', desired_capabilities)
+        self.driver.implicitly_wait(5)
+
+
+        self.user_miche_personal = 'xxx@gmail.com'
+        self.password_miche_personal = 'xxxxx'
+        self.link_cuenta_miche_personal_eth = 'aaaa'
+        self.link_cuenta_miche_personal_usdc = 'bbbbb'
+        self.link_cuenta_miche_personal_ltc = 'cccccc'
+        self.link_cuenta_miche_personal_dai = 'ddddddd'
+        self.link_cuenta_miche_personal_link = 'eeeeee'
+        self.link_cuenta_miche_personal_uni = 'ffffff'
+
+
+        self.user_miche_ar = 'xxxxxx@ripio.com'
+        self.password_miche_ar = 'xxxxxx'
+        self.link_cuenta_miche_ar_btc = 'eeeeeee'
+
+        self.user_nico_arg = 'xxxxxxxx@ripio.com'
+        self.password_nico_arg = 'xxxxxxx'
+
+        self.user_nico_br = 'xxxxxxxx@ripio.com'
+        self.password_nico_br = 'xxxxxx'
+
+        self.user_kari_ar = 'xxxxxxx@ripio.com'
+        self.password_kari_ar = 'xxxxxx'
