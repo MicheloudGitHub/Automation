@@ -1,0 +1,27 @@
+
+# importar la clase a utilizar
+from instabot import Bot
+# crear el nuevo objeto
+
+mi_bot = Bot()
+mi_bot.login(username='XX', password='XXXXX')
+mi_bot.follow_followers('quevuelvan87')
+
+
+/////////////////////////
+
+
+Recorrer lista
+#DEJAR DE SEGUIR
+#Para comentar varias lineas usar ctrl+/
+
+# list = [6296372091,
+        # 3298051253,
+        # 3288673744,
+        # 5592113309]
+#
+# i = 0
+# while i < len(list):
+#     mi_bot.unfollow(list[i])
+#     print("Se dejo de seguir a", list[i])
+#     i = i+1
