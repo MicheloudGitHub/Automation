@@ -1,0 +1,167 @@
+import unittest
+import time
+from selenium.common.exceptions import NoSuchElementException
+from index import Settings
+
+
+class Login(Settings, unittest.TestCase):
+    def test_login(self):
+        # Login
+        btn_ingresar = self.driver.find_element_by_xpath(
+            "//android.view.ViewGroup[@content-desc='btn-Ingresar']/android.widget.TextView")
+        btn_ingresar.click()
+        time.sleep(5)
+
+        # Ingreso mail y password
+        box_email = self.driver.find_element_by_accessibility_id("input-Email")
+        box_email.click()
+        box_email.send_keys(self.user_miche_ar)
+
+        box_pass = self.driver.find_element_by_accessibility_id("input-Contraseña")
+        box_pass.click()
+        box_pass.send_keys(self.password_miche_ar)
+
+        # Click en boton ingresar con datos cargados
+        btn_ingresar.click()
+        time.sleep(5)
+
+        # Planteo 3 posibles escenarios
+        # Escenario 1: "Elegi donde queres recibir tu codigo para ingresar"
+        try:
+            self.driver.find_element_by_xpath(
+            "//android.widget.TextView[@text='Elegí dónde querés recibir tu código para ingresar']")
+
+        except NoSuchElementException:
+            # Escenario 2: "Ingresa el codigo que te mandamos por sms"
+            try:
+                self.driver.find_element_by_xpath(
+                    "//android.widget.TextView[@bounds='[204,251][877,398]']")
+
+            except NoSuchElementException:
+
+                # Escenario 3: Ingreso sin problemas
+                # Click en omitir por ahora
+                time.sleep(5)
+                btn_omitirporahora = self.driver.find_element_by_xpath(
+                "//android.widget.TextView[@text='Omitir por ahora']")
+                btn_omitirporahora.click()
+                time.sleep(5)
+
+                # Cierro pop up de inversion
+                #cruz_generainversion = self.driver.find_element_by_accessibility_id("btn-back")
+                #cruz_generainversion.click()
+                #time.sleep(5)
+                return True
+
+            # Escenario 2: "Ingresa el codigo que te mandamos por sms"
+            # Deslizo para ver los msjs que llegaron
+            self.driver.swipe(550, 55, 550, 2020, 400)
+            time.sleep(4)
+
+            self.driver.tap([(482, 709)])
+            time.sleep(2)
+            self.driver.tap([(569, 1254)])
+            time.sleep(5)
+
+            # clickea en el codigo dentro del sms
+            self.driver.tap([(617, 2011)])
+            time.sleep(10)
+
+            # Copia el codigo
+            self.driver.tap([(955, 820)])
+            time.sleep(2)
+            self.driver.tap([(955, 820)])
+            time.sleep(2)
+            self.driver.tap([(651, 709)])
+            time.sleep(2)
+            self.driver.tap([(429, 718)])
+
+            # Busco la app de Ripio deszlizando de derecha a izq
+            self.driver.swipe(1051, 516, 569, 516, 400)
+            time.sleep(4)
+            btn_appRipio = self.driver.find_element_by_xpath(
+                    "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.FrameLayout[1]/android.widget.RelativeLayout/android.widget.RelativeLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.RelativeLayout/android.widget.RelativeLayout/android.widget.LinearLayout[1]/android.widget.ScrollView/android.widget.LinearLayout/android.widget.GridLayout[2]/android.widget.FrameLayout[3]/android.widget.RelativeLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.ImageView").click()
+            time.sleep(5)
+            self.driver.find_element_by_xpath(
+                "//android.view.ViewGroup[@content-desc='btn-paste']/android.widget.TextView").click()
+            time.sleep(5)
+
+            # Click en omitir por ahora
+            time.sleep(5)
+            btn_omitirporahora = self.driver.find_element_by_xpath(
+                    "//android.widget.TextView[@text='Omitir por ahora']")
+            btn_omitirporahora.click()
+            time.sleep(5)
+
+            # Cierro pop up de inversion
+            #cruz_generainversion = self.driver.find_element_by_accessibility_id("btn-back")
+            #cruz_generainversion.click()
+            #time.sleep(5)
+
+
+
+        # Escenario 1: "Elegi donde queres recibir tu codigo para ingresar"
+        btn_verotros = self.driver.find_element_by_xpath(
+                    "//android.widget.TextView[@bounds='[444,755][595,796]']").click()
+        time.sleep(2)
+        btn_enviarsms = self.driver.find_element_by_xpath(
+                    "//android.widget.TextView[@bounds='[276,616][981,656]']").click()
+        time.sleep(15)
+
+        # Deslizo para ver los msjs que llegaron
+        self.driver.swipe(550, 55, 550, 2020, 400)
+        time.sleep(4)
+
+        self.driver.tap([(482, 709)])
+        time.sleep(2)
+        self.driver.tap([(569, 1254)])
+        time.sleep(5)
+
+        # Clickea en el codigo dentro del sms
+        self.driver.tap([(617, 2011)])
+        time.sleep(10)
+
+        # Copia el codigo
+        self.driver.tap([(955, 820)])
+        time.sleep(2)
+        self.driver.tap([(955, 820)])
+        time.sleep(2)
+        self.driver.tap([(651, 709)])
+        time.sleep(2)
+        self.driver.tap([(429, 718)])
+
+        # Busco la app de Ripio deszlizando de derecha a izq
+        self.driver.swipe(1051, 516, 569, 516, 400)
+        time.sleep(4)
+        btn_appRipio = self.driver.find_element_by_xpath(
+            "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.FrameLayout[1]/android.widget.RelativeLayout/android.widget.RelativeLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.RelativeLayout/android.widget.RelativeLayout/android.widget.LinearLayout[1]/android.widget.ScrollView/android.widget.LinearLayout/android.widget.GridLayout[2]/android.widget.FrameLayout[3]/android.widget.RelativeLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.ImageView").click()
+        time.sleep(5)
+        #self.driver.find_element_by_xpath("//android.view.ViewGroup[@content-desc='btn-paste']/android.widget.TextView").click()
+        #time.sleep(5)
+
+        # Click en omitir por ahora
+        time.sleep(5)
+        btn_omitirporahora = self.driver.find_element_by_xpath(
+                    "//android.widget.TextView[@text='Omitir por ahora']")
+        btn_omitirporahora.click()
+        time.sleep(5)
+
+        # Cierro pop up de inversion
+        #cruz_generainversion = self.driver.find_element_by_accessibility_id("btn-back")
+        #cruz_generainversion.click()
+        #time.sleep(5)
+
+
+        time.sleep(10)
+        print(' --------------------------- ')
+        print(' ------Ingreso exitoso-----  ')
+        print(' --------------------------- ')
+
+    def tearDown(self):
+        self.driver.quit()
+        print(' --------------------------- ')
+        print(' Test executed successfully  ')
+        print(' --------------------------- ')
+
+if __name__ == '__main__':
+    unittest.main()
