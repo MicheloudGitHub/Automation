@@ -1,8 +1,0 @@
-GIT
-PASOS PARA AGREGAR CODIGO A GIT
-
-1 cd /Users/ripio/PycharmProjects/SendAndReceiveCryptos
-2 ls
-3 git add receive_crypto_test.py
-4 git commit -m “Test Automation Michel”
-5 git push
